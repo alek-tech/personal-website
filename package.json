@@ -1,0 +1,13 @@
+ 
+{
+  "name": "minimal-coding-website",
+  "version": "1.0.0",
+  "description": "A minimal coding-style personal website.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

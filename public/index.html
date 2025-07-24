@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alessandro Cvetković</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Forum&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* --- Global Styles & Variables --- */
+        :root {
+            --background-color: #f8f8f5;
+            --text-color: #000000;
+            --subtle-text-color: #555555;
+            --border-color: #EAEAEA;
+            --accent-color: #000000;
+            --font-family-primary: 'Crimson Text', Georgia, 'Times New Roman', serif;
+            --font-family-secondary: 'Forum', Georgia, 'Times New Roman', serif;
+            --font-family-ui: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --primary-white: #ffffff;
+            --grey-900: #0f0f0f;
+            --grey-800: #1a1a1a;
+            --grey-700: #2d2d2d;
+            --grey-600: #404040;
+            --grey-500: #666666;
+            --grey-400: #999999;
+            --grey-300: #cccccc;
+            --grey-200: #e6e6e6;
+            --grey-100: #f5f5f5;
+        }
+        /* --- Base & Typography --- */
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: var(--font-family-primary);
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            min-height: calc(100vh - 4rem);
+            position: relative;
+            z-index: 1;
+            box-sizing: border-box;
+        }
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-family: var(--font-family-ui);
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+        a:hover {
+            opacity: 0.7;
+        }
+        h1, h2, h3 {
+            color: var(--accent-color);
+            font-family: var(--font-family-secondary);
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            margin: 0 0 1rem 0;
+        }
+        h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        h2 {
+            font-size: 2rem;
+            border-bottom: 3px solid var(--border-color);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.25rem;
+        }
+        p {
+            margin: 0 0 1rem 0;
+            color: var(--subtle-text-color);
+        }
+        /* --- Header & Navigation --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 2rem;
+            margin-bottom: 4rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        header .logo a {
+            font-size: 1.4rem;
+            font-family: var(--font-family-secondary);
+            font-weight: 400;
+        }
+        header nav a {
+            font-family: var(--font-family-ui);
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+        nav a .arrow {
+            margin-right: 0.25rem;
+        }
+        /* --- Main Content & Sections --- */
+        main {
+            flex-grow: 1;
+        }
+        .hero {
+            text-align: left;
+            margin-bottom: 4rem;
+        }
+        .hero .intro-text p {
+            font-size: 1.4rem;
+            line-height: 1.5;
+        }
+        /* --- Typing Animation Styles --- */
+        .typing-container {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+            width: 100%;
+            min-height: 3rem;
+            text-align: left;
+        }
+        #typing-effect {
+            font-family: var(--font-family-secondary);
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--accent-color);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            flex-grow: 1;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+        #typing-effect::after {
+            content: '';
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background-color: var(--accent-color);
+            margin-left: 4px;
+            animation: blink 1.2s infinite;
+            vertical-align: -0.2em;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        /* --- Links Section --- */
+        .links {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+        .cta-link {
+            font-size: 1.2rem;
+            font-family: var(--font-family-ui);
+            padding: 0.75rem 1.5rem;
+            border: 3px solid var(--accent-color);
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .cta-link:hover {
+            background-color: var(--accent-color);
+            color: var(--background-color);
+            opacity: 1;
+        }
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: #AAAAAA;
+            font-family: var(--font-family-ui);
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        /* --- CV Page Specific Styles --- */
+        .cv-section {
+            margin-bottom: 3rem;
+        }
+        .cv-container {
+            background: var(--primary-white);
+            border: 1px solid var(--grey-200);
+            border-radius: 8px;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin: 2rem 0;
+            box-sizing: border-box;
+        }
+        .cv-content .contact-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .cv-content .contact-list li {
+            margin-bottom: 0.5rem;
+        }
+        .job {
+            margin-bottom: 2.5rem;
+        }
+        .job:last-child {
+            margin-bottom: 0;
+        }
+        .job-meta {
+            color: var(--text-color);
+            font-family: var(--font-family-ui);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .skill-category h3 {
+            font-size: 1.25rem;
+            font-family: var(--font-family-secondary);
+            font-weight: 400;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .skill-tag {
+            background: var(--grey-100);
+            color: var(--grey-700);
+            font-family: var(--font-family-ui);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        .job-details {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .job-details li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--grey-700);
+        }
+        .job-details li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--text-color);
+            font-weight: bold;
+        }
+        .skills-grid h3 {
+            font-size: 1.1rem;
+        }
+        .skills-grid p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+            h1 {
+                font-size: 2.8rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+            h3 {
+                font-size: 1.2rem;
+            }
+            .hero .intro-text p {
+                font-size: 1.2rem;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            #typing-effect {
+                font-size: 1.1rem;
+            }
+            .cta-link {
+                font-size: 1.1rem;
+            }
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 1.5rem;
+                font-size: 16px;
+            }
+            .container {
+                min-height: calc(100vh - 3rem);
+            }
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+                margin-bottom: 3rem;
+            }
+            .links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            .hero .intro-text p {
+                font-size: 1.1rem;
+            }
+            #typing-effect {
+                font-size: 1rem;
+            }
+            .cta-link {
+                font-size: 1rem;
+            }
+        }
+        /* Page switching styles */
+        .page {
+            display: none;
+            width: 100%;
+        }
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="main-page" class="page active">
+        <div class="container">
+            <header>
+                <div class="logo">
+                    <a href="#" onclick="showPage('main')">Alessandro Cvetković</a>
+                </div>
+                <nav>
+                    <a href="#" onclick="showPage('cv')">CV</a>
+                </nav>
+            </header>
+            <main class="hero">
+                <div class="intro-text">
+                    <h1>Mobile App Developer</h1>
+                    <p>Self-taught. Focused on Mobile and AI.</p>
+                    <div class="typing-container">
+                        <span id="typing-effect"></span>
+                    </div>
+                </div>
+            </main>
+            <section class="links">
+                <a href="https://github.com/alek-tech" target="_blank" rel="noopener noreferrer" class="cta-link">GitHub</a>
+                <a href="#" onclick="showPage('cv')" class="cta-link">CV</a>
+            </section>
+            <footer>
+                <p>© 2025 Alessandro Cvetković. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+    <div id="cv-page" class="page">
+        <div class="container">
+            <header>
+                <div class="logo">
+                    <a href="#" onclick="showPage('main')">Alessandro Cvetković</a>
+                </div>
+                <nav>
+                    <a href="#" onclick="showPage('main')"><span class="arrow">←</span> Back to Main</a>
+                </nav>
+            </header>
+            <main class="cv-content">
+                <div class="cv-container">
+                    <section class="cv-section">
+                        <h2>Contact Information</h2>
+                        <ul class="contact-list">
+                            <li><strong>Email:</strong> coffe.123@hotmail.com</li>
+                            <li><strong>Phone:</strong> +386 69 888 413</li>
+                            <li><strong>Languages:</strong> Slovenian, English, Italian, Serbian (+Cyrillic)</li>
+                        </ul>
+                    </section>
+                    <section class="cv-section">
+                        <h2>Professional Summary</h2>
+                        <p>
+                            Self-taught developer with 3 years of experience, initially specializing in Python-based web scraping and automation, and subsequently transitioning into cross-platform mobile application development using Flutter and PHP. Built many scraping and automation scripts. Built and deployed 3 utility mobile apps using Flutter on the App Store and Google Play Store. 
+                        </p>
+                    </section>
+                    <section class="cv-section">
+                        <h2>Technical Skills</h2>
+                        <div class="skills-grid">
+                            <div class="skill-category">
+                                <h3>Programming Languages & Frameworks</h3>
+                                <div class="skill-list">
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">Flutter</span>
+                                    <span class="skill-tag">Dart</span>
+                                    <span class="skill-tag">PHP</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h3>Scraping Tools</h3>
+                                <div class="skill-list">
+                                    <span class="skill-tag">requests</span>
+                                    <span class="skill-tag">asyncio</span>
+                                     <span class="skill-tag">scrapy</span>
+                                     <span class="skill-tag">Playwright</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h3>Mobile Development</h3>
+                                <div class="skill-list">
+                                    <span class="skill-tag">Clean Architecture</span>
+                                    <span class="skill-tag">Firebase</span>
+                                    <span class="skill-tag">Auth</span>
+                                    <span class="skill-tag">Notifications</span>
+                                    <span class="skill-tag">Ads</span>
+                                    <span class="skill-tag">Analytics</span>
+                                    <span class="skill-tag">Maps</span>
+                                    <span class="skill-tag">Chat</span>
+                                    <span class="skill-tag">Shop</span>
+                                    <span class="skill-tag">Github</span>
+                                    <span class="skill-tag">PHP Backend</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h3>Coding Practices</h3>
+                                <div class="skill-list">
+                                    <span class="skill-tag">Docs & Comments are Paramount</span>
+                                    <span class="skill-tag">Variable names should explain feature or current scope</span>
+                                    <span class="skill-tag">Focus on Project architecture & Design patterns</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="cv-section">
+                        <h2>Professional Experience</h2>
+                        <div class="job">
+                            <h3>Mobile App Developer</h3>
+                            <p class="job-meta">Sicirus d.o.o., Koper | April 2024 - Present</p>
+                            <ul class="job-details">
+                                <li>Developed and deployed 3 cross-platform utility mobile applications using Flutter and a PHP backend.</li>
+                                <li>Focused on scalability, performance, and integrating features like FCM Notifications, Google Ads, Maps in-app shop and chat functionalities.</li>
+                                <li>Implemented Firebase Analytics and utilized Shorebird for Continuous Integration.</li>
+                                <li>Collaborated within a marketing agency environment to deliver technical solutions, including linking features to a custom CMS.</li>
+                            </ul>
+                        </div>
+                        <div class="job">
+                            <h3>Touristic Guide (Erasmus Programs)</h3>
+                            <p class="job-meta">SubMeet - Centro Formazione, Italy | February 2023 - April 2024</p>
+                            <ul class="job-details">
+                                <li>Provided logistical and cultural support for international student and professor groups.</li>
+                                <li>Managed airport/bus station pickups, hotel arrangements, and orientation to Pescara and Italy.</li>
+                                <li>Acted as a liaison between participants and the organization, ensuring smooth execution of programs.</li>
+                                <li>Led guided tours to various Italian cities (San Marino, Rome, Naples, Ascoli Piceno, etc.).</li>
+                            </ul>
+                        </div>
+                        <div class="job">
+                            <h3>Web Scraping Specialist (Freelance)</h3>
+                            <p class="job-meta">Self-Taught | Approx. 2021 - 2024</p>
+                            <ul class="job-details">
+                                <li>Designed Python scripts for extracting data from complex websites using requests and async/threaded programming for scalable pipelines.</li>
+                            </ul>
+                        </div>
+                        <div class="job">
+                            <h3>Barista</h3>
+                            <p class="job-meta">Kavarna "Piran" Šačir Imeri s.p. | April 2019 - December 2019</p>
+                            <ul class="job-details">
+                                <li>Prepared and served beverages, managed customer service in a high-traffic tourist location.</li>
+                                <li>Maintained working environment including bar area, various machines, and terrace.</li>
+                            </ul>
+                        </div>
+                        <div class="job">
+                            <h3>Server Assistant</h3>
+                            <p class="job-meta">Družba HOTELI METROPOL d.o.o. | July 2017 - August 2017</p>
+                            <ul class="job-details">
+                                <li>Assisted with table service, food preparation, and table setup in hotel restaurant.</li>
+                                <li>Maintained cleanliness of dining areas and work spaces.</li>
+                                <li>Provided customer service support during peak tourist season.</li>
+                            </ul>
+                        </div>
+                        <div class="job">
+                            <h3>Park and Beach Maintenance</h3>
+                            <p class="job-meta">Storitve za kmetijstvo Michele Trani s.p. | August 2017 - November 2017</p>
+                            <ul class="job-details">
+                                <li>Maintained and cleaned park and beach areas that are part of Terme Krka health resort.</li>
+                                <li>Performed landscaping duties and facility upkeep to maintain high standards for resort guests.</li>
+                                <li>Collaborated with resort management to ensure pristine environment for visitors.</li>
+                            </ul>
+                        </div>
+                        <div class="job">
+                            <h3>Head of Procurement and Production</h3>
+                            <p class="job-meta">Kamnoseštvo Granit s.p. | January 2016 - December 2016</p>
+                            <ul class="job-details">
+                                <li>Advanced from physical worker to management role due to demonstrated skills and initiative.</li>
+                                <li>Managed stone procurement, supplier communications, and documentation preparation.</li>
+                                <li>Organized work assignments for staff, oversaw production of stone products and repairs.</li>
+                                <li>Led business operations with focus on efficiency and quality control.</li>
+                            </ul>
+                        </div>
+                        <div class="job">
+                            <h3>Park Manager</h3>
+                            <p class="job-meta">Zabaviščni vodni park Robert Cigoj s.p. | June 2015 - September 2015</p>
+                            <ul class="job-details">
+                                <li>Managed customer reception and equipment distribution for water park visitors.</li>
+                                <li>Operated cash register and handled financial transactions during busy summer season.</li>
+                                <li>Responsible for park supervision, maintenance, and safety according to employer guidelines.</li>
+                                <li>Developed strong customer service skills managing large volumes of visitors daily.</li>
+                            </ul>
+                        </div>
+                        <div class="job">
+                            <h3>Kitchen Assistant</h3>
+                            <p class="job-meta">Alpe-Panon d.o.o. | January 2015 - February 2015</p>
+                            <ul class="job-details">
+                                <li>Worked in kitchen preparing meals and maintaining food preparation areas.</li>
+                                <li>Cleaned and organized lobby areas, provided customer assistance.</li>
+                                <li>Supported restaurant operations during winter season.</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <section class="cv-section">
+                        <h2>Education</h2>
+                        <div class="job">
+                            <h3>Computer Technician (IV. stopnja)</h3>
+                            <p class="job-meta">Srednja ekonomska šola Pietro Coppo, Italy | 2012 - 2017</p>
+                        </div>
+                    </section>
+                    <section class="cv-section">
+                        <h2>Additional Information</h2>
+                        <p>Driver's License: B Category</p>
+                        <p>Availability: Immediate</p>
+                    </section>
+                </div>
+            </main>
+            <footer>
+                <p>© 2025 Alessandro Cvetković. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            const targetPage = document.getElementById(pageId + '-page');
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+        }
+
+        // Custom Typing Animation
+        document.addEventListener("DOMContentLoaded", function() {
+            const typingElement = document.getElementById("typing-effect");
+            if (!typingElement) return;
+
+            const phrases = [
+                `Skills:
+  - Mobile apps (Flutter)
+  - Web Scraping (Python)
+  - Backend (Python & PHP)
+  - DB (SQL/No-SQL)`,
+                'Aaaaaaaand yes, ',
+                'i vibe coded this 🙃'
+            ];
+
+            let phraseIndex = 0;
+            let letterIndex = 0;
+
+            const typingSpeed = 50;
+            const deletingSpeed = 30;
+            const endPauseDuration = 2000;
+            const preLinePause = 4000;
+            const midLinePause = 600;
+
+            function type() {
+                if (phraseIndex < phrases.length) {
+                    const currentPhrase = phrases[phraseIndex];
+                    if (letterIndex < currentPhrase.length) {
+                        typingElement.textContent += currentPhrase.charAt(letterIndex);
+                        letterIndex++;
+                        setTimeout(type, typingSpeed);
+                    } else {
+                        phraseIndex++;
+                        letterIndex = 0;
+
+                        if (phraseIndex === 1) {
+                            typingElement.textContent += '\n\n';
+                            setTimeout(type, preLinePause);
+                        } else if (phraseIndex === 2) {
+                            setTimeout(type, midLinePause);
+                        } else if (phraseIndex === phrases.length) {
+                            setTimeout(deleteAll, endPauseDuration);
+                        } else {
+                            setTimeout(type, typingSpeed);
+                        }
+                    }
+                }
+            }
+
+            function deleteAll() {
+                if (typingElement.textContent.length > 0) {
+                    typingElement.textContent = typingElement.textContent.slice(0, -1);
+                    setTimeout(deleteAll, deletingSpeed);
+                } else {
+                    phraseIndex = 0;
+                    letterIndex = 0;
+                    setTimeout(type, typingSpeed);
+                }
+            }
+
+            setTimeout(type, 3500);
+        });
+    </script>
+</body>
+</html>
