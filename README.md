@@ -1,4 +1,4 @@
-# Minimal Coding-Style Personal Website
+# Minimal Personal Website
 
 **[Live Demo](https://your-vercel-url.vercel.app/)**
 
